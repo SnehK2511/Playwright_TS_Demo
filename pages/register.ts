@@ -1,8 +1,26 @@
-exports.registerUser = class registerUser {
+import{Page,expect, Locator, test} from '@playwright/test';
 
-    constructor(page) {
+export class registerUser {
+    page: Page;
+    registerUrl: Locator;
+    firstname: Locator;
+    lastname: Locator;
+    email: Locator;
+    password: Locator;
+    confirmPasword: Locator;
+    occupation: Locator;
+    mobile: Locator;
+    gender: Locator;
+    agreement: Locator;
+    register: Locator;
+    loginLink: Locator;
+    username: Locator;
+    userPass: Locator;
+    submit: Locator;
+
+    constructor(page: Page) {
         this.page = page
-        this.registerUrl = page.click('.text-reset')
+        this.registerUrl = page.locator('.text-reset')
         this.firstname = page.locator('#firstName')
         this.lastname = page.locator('#lastName')
         this.email = page.locator('#userEmail')
@@ -22,7 +40,7 @@ exports.registerUser = class registerUser {
     async goto() {
         await this.page.goto("https://rahulshettyacademy.com/client/#/auth/login");
     }
-    async Signup(firstname, lastname, email, password, confirmPasword, occupation, mobile) {
+    async Signup(firstname: string, lastname: string, email: any, password: any, confirmPasword: any, occupation: string, mobile: string){
         await this.registerUrl
         await this.firstname.fill(firstname)
         await this.lastname.fill(lastname)
@@ -35,7 +53,7 @@ exports.registerUser = class registerUser {
         await this.agreement.check()
         await this.register.click()
     }
-    async Signin(username, userPass) {
+    async Signin(username: any, userPass: any) {
         await this.loginLink.click()
         await this.username.fill(username)
         await this.userPass.fill(userPass)
@@ -44,4 +62,5 @@ exports.registerUser = class registerUser {
 
 }
 
+module.exports = {registerUser}
 

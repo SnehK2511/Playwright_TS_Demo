@@ -1,6 +1,22 @@
-const { expect } = require('@playwright/test');
-exports.Checkout = class CheckoutPage {
-    constructor(page) {
+import { expect, Locator, Page, test } from "@playwright/test";
+export class Checkout {
+    page: Page;
+    Email: Locator;
+    Country: Locator;
+    SelectCountry: Locator;
+    Selected: Locator;
+    Month: Locator;
+    Date: Locator;
+    Cvv: Locator;
+    cardName: Locator;
+    coupen: Locator;
+    applycp: Locator;
+    toast: Locator;
+    plceorder: Locator;
+    Confirmation_text: Locator;
+
+
+    constructor(page: Page) {
         this.page = page
         this.Email = page.locator('input.input.txt.text-validated.ng-pristine')
         this.Country = page.locator('[placeholder="Select Country"]')
@@ -41,3 +57,5 @@ exports.Checkout = class CheckoutPage {
 
     }
 }
+
+module.exports = {Checkout}

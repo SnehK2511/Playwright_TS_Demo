@@ -1,6 +1,12 @@
-exports.e2e = class productdetails {
+import{test, Page, Locator,expect} from '@playwright/test';
 
-    constructor(page) {
+export class e2e {
+    page: Page;
+    Products: Locator;
+    Toast: Locator;
+
+
+    constructor(page: Page) {
         this.page = page
         this.Products = page.locator(".card-body")
         this.Toast = page.locator('[role="alert"]')
@@ -18,7 +24,7 @@ exports.e2e = class productdetails {
         console.log("Total Products:", totalProduct);
 
         for (let i = 0; i < totalProduct; i++) {
-            const title = await this.Products.nth(i).locator("b").textContent();
+            const title: any = await this.Products.nth(i).locator("b").textContent();
             console.log(title);
             if (title.trim() === productName) {
                 console.log("Product Found");
@@ -35,3 +41,5 @@ exports.e2e = class productdetails {
 
 
 }
+
+module.exports = { e2e }

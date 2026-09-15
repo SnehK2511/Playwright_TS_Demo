@@ -1,6 +1,12 @@
-exports.LoginUser = class LoginUser 
+import{Page, expect, Locator, test} from "@playwright/test";
+export class LoginUser 
 {
-    constructor(page)
+    page: Page;
+    username: Locator;
+    userPass: Locator;
+    submit: Locator;
+
+    constructor(page: Page)
     {
         this.page = page
         this.username = page.locator('input[type="email"]')
@@ -12,7 +18,7 @@ exports.LoginUser = class LoginUser
         await this.page.goto("https://rahulshettyacademy.com/client/#/auth/login");
     }
 
-    async LoginUser(username, userPass)
+    async LoginUser(username: string, userPass: any)
     {
         await this.username.fill(username)
         await this.userPass.fill(userPass)
@@ -21,3 +27,5 @@ exports.LoginUser = class LoginUser
 
 
 }
+
+module.exports = {LoginUser}

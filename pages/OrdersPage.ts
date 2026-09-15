@@ -1,6 +1,13 @@
-exports.orders = class Orderspage {
+import{Page, Locator, expect, test} from '@playwright/test';
 
-    constructor(page) {
+export class orders {
+    page: Page;
+    Order_detals: Locator;
+    orderHistory: Locator;
+    orderTable: Locator;
+    OrderRow: Locator;
+
+    constructor(page: Page) {
 
         this.page = page
         this.Order_detals = page.locator('label.ng-star-inserted')
@@ -12,7 +19,7 @@ exports.orders = class Orderspage {
 
     async Order() {
 
-        const Order_detals = await this.Order_detals.textContent();
+        const Order_detals:any = await this.Order_detals.textContent();
         const Order_ID = await Order_detals.split(' | ');
         const Neworder = await (Order_ID[1]);
         console.log(Neworder);
@@ -34,3 +41,4 @@ exports.orders = class Orderspage {
     }
 
 }
+module.exports ={ orders }

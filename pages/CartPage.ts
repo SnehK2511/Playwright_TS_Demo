@@ -1,5 +1,11 @@
-exports.Cart = class CartPage {
-    constructor(page) {
+import { expect, Locator, Page, test } from "@playwright/test";
+
+export class Cart {
+    page: Page;
+    CartButton: Locator;
+    Buynow: Locator;
+
+    constructor(page: Page) {
         this.page = page
         this.CartButton = page.locator("button[routerlink='/dashboard/cart']")
         this.Buynow = page.locator('text= Buy Now')
@@ -11,3 +17,5 @@ exports.Cart = class CartPage {
     }
 
 }
+
+module.exports = {Cart}
